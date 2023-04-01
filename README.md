@@ -33,13 +33,13 @@ The following example will run `curl ifconfig.co/json` through VPN configured in
 # Unix
 docker run -it --rm --device=/dev/net/tun --cap-add=NET_ADMIN \
     -v "${PWD}":/vpn:ro -e OPENVPN_CONFIG=/vpn/vpn.ovpn \
-    curve25519xsalsa20poly1305/openvpn-tunnel \
+   ghcr.io/riccardobl/docker-openvpn-tunnel:master \
     curl ifconfig.co/json
 
 # Windows
 docker run -it --rm --device=/dev/net/tun --cap-add=NET_ADMIN ^
     -v "%CD%":/vpn:ro -e OPENVPN_CONFIG=/vpn/vpn.ovpn ^
-    curve25519xsalsa20poly1305/openvpn-tunnel ^
+    ghcr.io/riccardobl/docker-openvpn-tunnel:master ^
     curl ifconfig.co/json
 ```
 
@@ -52,13 +52,13 @@ You can leave the VPN connection running in background, and later use `docker ex
 NAME="myvpn"
 docker run --name "${NAME}" -dit --rm --device=/dev/net/tun --cap-add=NET_ADMIN \
     -v "${PWD}":/vpn:ro -e OPENVPN_CONFIG=/vpn/vpn.ovpn \
-    curve25519xsalsa20poly1305/openvpn-tunnel
+   ghcr.io/riccardobl/docker-openvpn-tunnel:master
 
 # Windows
 SET NAME="myvpn"
 docker run --name "%NAME%" -dit --rm --device=/dev/net/tun --cap-add=NET_ADMIN ^
     -v "%PWD%":/vpn:ro -e OPENVPN_CONFIG=/vpn/vpn.ovpn ^
-    curve25519xsalsa20poly1305/openvpn-tunnel
+    ghcr.io/riccardobl/docker-openvpn-tunnel:master
 ```
 
 Then you run commads using `docker exec`:
@@ -92,7 +92,7 @@ This image only includes `curl` and `wget` for most basic HTTP request usage. If
 Here is a very simple example `Dockerfile` that will install [aria2](http://aria2.github.io/) in its derived image.
 
 ```Dockerfile
-FROM curve25519xsalsa20poly1305/openvpn-tunnel
+FROM ghcr.io/riccardobl/docker-openvpn-tunnel:master
 RUN apk add --no-cache aria2
 ```
 
